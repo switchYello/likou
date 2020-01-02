@@ -18,16 +18,6 @@ public class P109 {
     }
 
 
-    private static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
     static class Solution {
 
         /*

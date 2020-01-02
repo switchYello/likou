@@ -34,15 +34,6 @@ public class P100 {
 
 * */
 
-    private class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
     /*
     * 比较根节点相同，在递归比较左右子树相同
     * */

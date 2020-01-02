@@ -29,15 +29,6 @@ public class P437 {
 
 * */
 
-    private static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
 
     static class Solution {
 
@@ -81,17 +72,7 @@ public class P437 {
     }
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(10);
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(-3);
-        root.left.left = new TreeNode(3);
-        root.left.right = new TreeNode(2);
-        root.left.left.left = new TreeNode(3);
-        root.left.left.right = new TreeNode(-2);
-        root.left.right.right = new TreeNode(1);
-        root.right = new TreeNode(-3);
-        root.right.right = new TreeNode(11);
-
+        TreeNode root = TreeNode.arrayToTree(new Integer[]{10, 5, -3, 3, 2, null, 11, 3, -2, null, 1});
         int i = Solution.pathSum(root, 8);
         System.out.println(i);
 

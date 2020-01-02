@@ -20,16 +20,6 @@ package tree;
 * */
 public class P108 {
 
-    private static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
     static class Solution {
         //将数组存储为全局
         int[] nums;
@@ -56,6 +46,7 @@ public class P108 {
             }
             return node;
         }
+
 
         public static void main(String[] args) {
             int[] params = {-10, -3, 0, 5, 9};
