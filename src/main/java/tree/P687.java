@@ -28,18 +28,6 @@ package tree;
 * */
 public class P687 {
 
-    static class A {
-        TreeNode node;
-        int count;
-    }
-
-    private static class MyTreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        int count;
-    }
-
     private static class TreeNode {
         int val;
         TreeNode left;
@@ -50,49 +38,82 @@ public class P687 {
         }
     }
 
-    class Solution {
-        int max = 0;
+    static class Solution {
 
+        //真实同值路径 = 同值节点数 - 1
         public int longestUnivaluePath(TreeNode root) {
             if (root == null) {
-                return max;
+                return 0;
             }
-            int[] ints = longestUnivaluePathRun(root);
-            max = Math.max(max, ints[0] + ints[1]);
-            return max;
+            search(root);
+            return max - 1;
         }
 
-        //得到树的左右两边分量
-        private int[] longestUnivaluePathRun(TreeNode root) {
-            int sum = 0, L = 0, R = 0;
-            if (root.left != null) {
-                int[] left = longestUnivaluePathRun(root.left);
-                L = left[0] + left[1];
-                if (root.left.val == root.val) {
-                    //如果子树左右两边有一个小于1的，则忽略那个小于1的
-                    if (left[0] < 1 || left[1] < 1) {
-                        sum += 1;
-                        sum += Math.max(left[0], left[1]);
-                    } else {
-                        sum += L;
-                    }
-                }
-            }
+        int max = 0;
 
-            if (root.right != null) {
-                int[] right = longestUnivaluePathRun(root.right);
-                R = right[0] + right[1];
-                if (root.right.val == root.val) {
-                    if (right[0] < 1 || right[1] < 1) {
-                        sum += 1;
-                        sum += Math.max(right[0], right[1]);
-                    } else {
-                        sum += R;
-                    }
-                }
+        //返回值以root为起点的最大连接节点数
+        int search(TreeNode root) {
+            if (root == null) {
+                return 0;
             }
-            max = Math.max(sum, max);
-            return new int[]{L, R};
+            int left = search(root.left);
+            int right = search(root.right);
+            int pLeft = 0, pRight = 0;
+            if (root.left != null && root.left.val == root.val) {
+                pLeft = left;
+            }
+            if (root.right != null && root.right.val == root.val) {
+                pRight = right;
+            }
+            max = Math.max(max, 1 + pLeft + pRight);
+            return 1 + Math.max(pLeft, pRight);
+        }
+
+        /*
+         * 官方答案
+         * */
+        int ans;
+
+        //此返回值为以root为起点最大同值长度
+        public int arrowLength(TreeNode node) {
+            if (node == null) return 0;
+            int left = arrowLength(node.left);
+            int right = arrowLength(node.right);
+            int arrowLeft = 0, arrowRight = 0;
+            if (node.left != null && node.left.val == node.val) {
+                arrowLeft += left + 1;
+            }
+            if (node.right != null && node.right.val == node.val) {
+                arrowRight += right + 1;
+            }
+            ans = Math.max(ans, arrowLeft + arrowRight);
+            return Math.max(arrowLeft, arrowRight);
+        }
+
+
+        public static void main(String[] args) {
+/*            TreeNode t = new TreeNode(1);
+            t.right = new TreeNode(1);
+            t.right.left = new TreeNode(1);
+            t.right.right = new TreeNode(1);
+
+            t.right.left.left = new TreeNode(1);
+            t.right.left.right = new TreeNode(1);
+
+            t.right.right.left = new TreeNode(1);
+            t.right.right.right = new TreeNode(1);*/
+
+            TreeNode t = new TreeNode(1);
+            t.left = new TreeNode(4);
+            t.right = new TreeNode(5);
+
+            t.left.left = new TreeNode(4);
+            t.left.right = new TreeNode(4);
+
+            t.right.left = new TreeNode(5);
+
+            System.out.println(new Solution().longestUnivaluePath(t));
+
         }
 
 
