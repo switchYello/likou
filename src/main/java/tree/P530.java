@@ -25,6 +25,7 @@ package tree;
 public class P530 {
 
     //二叉搜索树的最小绝对差
+    //即两个节点差的绝对值，，解法是按照中序遍历，二叉搜索树会变成递增序列
     static class Solution {
 
         //存储最小绝对差
