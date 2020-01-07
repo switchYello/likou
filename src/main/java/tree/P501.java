@@ -23,28 +23,65 @@ package tree;
 
 **/
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class P501 {
 
     static class Solution {
 
         //提示，此树是二叉搜索树，众数可能有多个
-        //方法1，可以遍历一遍节点，将所有值存入map内，再返回最大的
+        //方法 按照 中序遍历将二叉搜索树变成从小到大排序的数组
+        Set<Integer> set = new HashSet<>();
+        int v;
+        int maxCount = 0;
+        int currentCount = 0;
+
         public int[] findMode(TreeNode root) {
-            int sum = 1;
-            if (root.left != null && root.left.val == root.val) {
-                sum++;
+            doLoop(root);
+
+            int[] result = new int[set.size()];
+            int i = 0;
+            for (Integer integer : set) {
+                result[i++] = integer;
             }
-            if (root.right != null && root.right.val == root.val) {
-                sum++;
-            }
-
-            //左子树的众数
-            int[] left = findMode(root.left);
-            //右子树的众数
-            int[] right = findMode(root.right);
-
-
+            return result;
         }
+
+        private void doLoop(TreeNode t) {
+            if (t == null) {
+                return;
+            }
+            doLoop(t.left);
+            //第一次currentCount == 0,设置初始值，以后currentCount就不可能是 0 了
+            if (currentCount == 0) {
+                v = t.val;
+            }
+            //更新计数或重置计数
+            if (v == t.val) {
+                currentCount++;
+            } else {
+                currentCount = 1;
+                v = t.val;
+            }
+            //计算是否添加到set中，或者刷新set
+            if (currentCount == maxCount) {
+                set.add(v);
+            } else if (currentCount > maxCount) {
+                maxCount = currentCount;
+                set.clear();
+                set.add(v);
+            }
+
+            doLoop(t.right);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] mode = new Solution().findMode(TreeNode.arrayToTree(new Integer[]{1, null, 2}));
+        System.out.println(Arrays.toString(mode));
+
     }
 
 
