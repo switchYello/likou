@@ -70,7 +70,6 @@ public class P1022 {
         int content = 0;
         int c = 1;
         System.out.println(content | c);
-
     }
 
 

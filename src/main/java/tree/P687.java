@@ -82,17 +82,6 @@ public class P687 {
 
 
         public static void main(String[] args) {
-/*            TreeNode t = new TreeNode(1);
-            t.right = new TreeNode(1);
-            t.right.left = new TreeNode(1);
-            t.right.right = new TreeNode(1);
-
-            t.right.left.left = new TreeNode(1);
-            t.right.left.right = new TreeNode(1);
-
-            t.right.right.left = new TreeNode(1);
-            t.right.right.right = new TreeNode(1);*/
-
             TreeNode t = new TreeNode(1);
             t.left = new TreeNode(4);
             t.right = new TreeNode(5);
