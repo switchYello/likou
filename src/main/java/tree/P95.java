@@ -34,6 +34,7 @@ public class P95 {
 
     /*
      * 不同的二叉搜索树 II
+     * 和p894 有点像，可以参考下
      * */
     static class Solution {
         /*
