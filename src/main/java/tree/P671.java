@@ -33,6 +33,10 @@ public class P671 {
     static
     class Solution {
         // 二叉树中第二小的节点
+        /*
+         * 题目已知的是1.每个节点存在两个子节点或没有子节点。2.如果存在两个子节点，则父节点的值小于子节点的
+         * 根据已知条件能判断出，root节点的值是最小的
+         * */
         public int findSecondMinimumValue(TreeNode root) {
             //单独处理null
             if (root == null) {
@@ -41,6 +45,7 @@ public class P671 {
             return secondMin(root, root.val);
         }
 
+        //找到树中 值不等于notEqual的值中最小的，没找到则返回-1
         int secondMin(TreeNode node, int notEqual) {
             int min = -1;
             if (node == null) {
