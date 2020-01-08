@@ -38,7 +38,7 @@ public class P173 {
     //解法就是使用中序遍历，每次返回一个
     static class BSTIterator {
         Deque<TreeNode> deque = new LinkedList<>();
-        Set<TreeNode> con = new HashSet<>();
+        Set<TreeNode> con = new HashSet<>(4);
 
         public BSTIterator(TreeNode t) {
             if (t != null) {
