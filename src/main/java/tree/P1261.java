@@ -99,8 +99,30 @@ public class P1261 {
             }
         }
 
+        //方法1：使用set存储所有节点的
         public boolean find(int target) {
             return set.contains(target);
+        }
+
+        //方法2：根据规则反向查
+        public boolean find2(int target) {
+            return findHelp(target) != null;
+        }
+
+        private TreeNode findHelp(int target) {
+            if (target < 0) {
+                return null;
+            }
+            if (target == 0) {
+                return root;
+            }
+            if (target % 2 == 0) {
+                TreeNode help = findHelp((target - 2) / 2);
+                return help == null ? null : help.right;
+            } else {
+                TreeNode help = findHelp((target - 1) / 2);
+                return help == null ? null : help.left;
+            }
         }
 
     }
