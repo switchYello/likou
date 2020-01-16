@@ -33,31 +33,31 @@ import java.util.List;
 public class P1110 {
 
     List<TreeNode> result = new ArrayList<>();
-    List<Integer> delete = new ArrayList<>();
 
     /*
      * todo
      * 这题没想出来，看答案的
      * */
     public List<TreeNode> delNodes(TreeNode root, int[] to_delete) {
+        List<Integer> delete = new ArrayList<>();
         for (int i : to_delete) {
             delete.add(i);
         }
-        TreeNode loop = loop(root);
+        TreeNode loop = loop(root, delete);
         if (loop != null) {
             result.add(loop);
         }
         return result;
     }
 
-    public TreeNode loop(TreeNode root) {
+    public TreeNode loop(TreeNode root, List<Integer> deletes) {
         if (root == null) {
             return null;
         }
-        root.left = loop(root.left);
-        root.right = loop(root.right);
+        root.left = loop(root.left, deletes);
+        root.right = loop(root.right, deletes);
 
-        if (delete.contains(root.val)) {
+        if (deletes.contains(root.val)) {
             if (root.left != null) {
                 result.add(root.left);
             }
