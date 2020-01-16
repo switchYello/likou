@@ -35,6 +35,11 @@ import java.util.Queue;
  * 链接：https://leetcode-cn.com/problems/complete-binary-tree-inserter
  */
 public class P919 {
+    /*
+     * 参考答案后发现，list里面的值，在index之前的节点都没有使用到，是不用保存的
+     *
+     * */
+
 
     //按照完全二叉树的规则插入节点
     static class CBTInserter {
