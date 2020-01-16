@@ -66,9 +66,9 @@ public class P450 {
         if (root.left == null) {
             return root.right;
         }
-        //删除根节点，则根节点变成右树的最左边节点
+        //删除根节点，则根节点变成右树的最左边节点（执行到这里右子树一定存在）
         root.val = getLeftVal(root.right).val;
-        //再从根节点中删除最左边节点
+        //再从右子树中删除最左边节点
         root.right = deleteNode(root.right, root.val);
         return root;
     }
