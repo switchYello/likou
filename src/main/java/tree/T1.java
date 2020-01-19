@@ -116,7 +116,7 @@ public class T1 {
         }
     }
 
-    //7.非递归中序遍历
+    //7.非递归后序遍历
     private static void loop7(TreeNode treeNode) {
         if (treeNode == null) {
             return;
