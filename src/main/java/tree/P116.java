@@ -91,19 +91,16 @@ public class P116 {
         while (!queue.isEmpty()) {
             int size = queue.size();
             //得到第一个元素，此元素一定不为空
-            while (true) {
+            while (size-- > 0) {
                 Node p1 = queue.poll();
-                p1.next = queue.peek();
+                if (size > 0) {
+                    p1.next = queue.peek();
+                }
                 if (p1.left != null) {
                     queue.offer(p1.left);
                 }
                 if (p1.right != null) {
                     queue.offer(p1.right);
-                }
-                //剩余数量递减，当减到0时，将最后一个节点的next置0
-                if (--size == 0) {
-                    p1.next = null;
-                    break;
                 }
             }
         }
