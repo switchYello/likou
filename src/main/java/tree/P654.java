@@ -1,6 +1,6 @@
 package tree;
 
-/*
+/**
 给定一个不含重复元素的整数数组。一个以此数组构建的最大二叉树定义如下：
 
 二叉树的根是数组中的最大元素。
@@ -36,10 +36,10 @@ public class P654 {
 
     static class Solution {
 
-        //最大二叉树
+        //最大二叉树。参考P998 最大二叉树2
         /*
-        * 解题思路： 按照题意，找到最大值作为根节点，左边递归为左子树，右边递归为右子树
-        * */
+         * 解题思路： 按照题意，找到最大值作为根节点，左边递归为左子树，右边递归为右子树
+         * */
         public TreeNode constructMaximumBinaryTree(int[] nums) {
             if (nums == null || nums.length == 0) {
                 return null;
