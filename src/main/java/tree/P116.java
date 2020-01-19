@@ -60,7 +60,7 @@ public class P116 {
         }
     }
 
-    //递归遍历每个子树
+    //这种方法很好，，，一个节点的右子节点的next 等于节点next的左子节点
     public Node connect(Node root) {
         if (root == null) {
             return root;
