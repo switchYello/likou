@@ -36,7 +36,7 @@ import java.util.*;
 public class P230 {
 
     //二叉搜索树中第K小的元素
-    //要点是二叉搜索树，中序遍历是递增的
+    //要点是二叉搜索树，中序遍历是递增的，所以返回中序遍历时的第k个即可
     static class Solution {
 
         //题目说明假定k一定存在
