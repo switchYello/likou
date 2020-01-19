@@ -3,41 +3,41 @@ package tree;
 import java.util.*;
 
 
-/*
-    给你 root1 和 root2 这两棵二叉搜索树。
-            请你返回一个列表，其中包含 两棵树 中的所有整数并按 升序 排序。.
-
-            示例 1：
-
-            输入：root1 = [2,1,4], root2 = [1,0,3]
-            输出：[0,1,1,2,3,4]
-            示例 2：
-
-            输入：root1 = [0,-10,10], root2 = [5,1,7,0,2]
-            输出：[-10,0,0,1,2,5,7,10]
-            示例 3：
-
-            输入：root1 = [], root2 = [5,1,7,0,2]
-            输出：[0,1,2,5,7]
-            示例 4：
-
-            输入：root1 = [0,-10,10], root2 = []
-            输出：[-10,0,10]
-            示例 5：
-
-
-
-            输入：root1 = [1,null,8], root2 = [8,1]
-            输出：[1,1,8,8]
-             
-
-            提示：
-
-            每棵树最多有 5000 个节点。
-            每个节点的值在 [-10^5, 10^5] 之间。
-
-            链接：https://leetcode-cn.com/problems/all-elements-in-two-binary-search-trees
-*/
+/**
+ * 给你 root1 和 root2 这两棵二叉搜索树。
+ * 请你返回一个列表，其中包含 两棵树 中的所有整数并按 升序 排序。.
+ * <p>
+ * 示例 1：
+ * <p>
+ * 输入：root1 = [2,1,4], root2 = [1,0,3]
+ * 输出：[0,1,1,2,3,4]
+ * 示例 2：
+ * <p>
+ * 输入：root1 = [0,-10,10], root2 = [5,1,7,0,2]
+ * 输出：[-10,0,0,1,2,5,7,10]
+ * 示例 3：
+ * <p>
+ * 输入：root1 = [], root2 = [5,1,7,0,2]
+ * 输出：[0,1,2,5,7]
+ * 示例 4：
+ * <p>
+ * 输入：root1 = [0,-10,10], root2 = []
+ * 输出：[-10,0,10]
+ * 示例 5：
+ * <p>
+ * <p>
+ * <p>
+ * 输入：root1 = [1,null,8], root2 = [8,1]
+ * 输出：[1,1,8,8]
+ *  
+ * <p>
+ * 提示：
+ * <p>
+ * 每棵树最多有 5000 个节点。
+ * 每个节点的值在 [-10^5, 10^5] 之间。
+ * <p>
+ * 链接：https://leetcode-cn.com/problems/all-elements-in-two-binary-search-trees
+ */
 
 public class P1305 {
 
@@ -45,7 +45,7 @@ public class P1305 {
     /*
      * 遇到二叉搜索树，想到中序遍历来获取从小到大的值
      * 这里创建类TreeIterator，来逐个遍历，但是效率并不高
-     *
+     *遍历器依次取出小的值
      * */
     static class Solution {
         public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
@@ -53,14 +53,25 @@ public class P1305 {
             List<Integer> list = new ArrayList<>();
             TreeIterator t1 = new TreeIterator(root1);
             TreeIterator t2 = new TreeIterator(root2);
+
+            //初始状态，各取一个值出来
             Integer v1 = null, v2 = null;
-            while (v1 != null || v2 != null || t1.hasNext() || t2.hasNext()) {
+            if (t1.hasNext()) {
+                v1 = t1.next();
+            }
+            if (t2.hasNext()) {
+                v2 = t2.next();
+            }
+
+            while (v1 != null || v2 != null) {
+                //没值了就取值
                 if (v1 == null && t1.hasNext()) {
                     v1 = t1.next();
                 }
                 if (v2 == null && t2.hasNext()) {
                     v2 = t2.next();
                 }
+                //到这里说明v1 v2 有一个不是null
                 if (v1 == null) {
                     list.add(v2);
                     v2 = null;
@@ -71,6 +82,7 @@ public class P1305 {
                     v1 = null;
                     continue;
                 }
+                //将小的值放入list
                 if (v1 > v2) {
                     list.add(v2);
                     v2 = null;
