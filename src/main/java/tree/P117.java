@@ -64,7 +64,7 @@ public class P117 {
             next = _next;
         }
     }
-    
+
     //参见P116 的非递归方法
     public Node connect(Node root) {
         if (root == null) {
