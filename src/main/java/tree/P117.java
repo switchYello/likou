@@ -65,7 +65,10 @@ public class P117 {
         }
     }
 
-    //参见P116 的非递归方法
+    /* 参见P116 的非递归方法
+     * 这里不是满二叉树了用p116的方法不好做，但能用层次遍历的方式
+     * */
+
     public Node connect(Node root) {
         if (root == null) {
             return root;
@@ -77,7 +80,7 @@ public class P117 {
             //得到第一个元素，此元素一定不为空
             while (size-- > 0) {
                 Node p1 = queue.poll();
-                if(size > 0){
+                if (size > 0) {
                     p1.next = queue.peek();
                 }
                 if (p1.left != null) {
